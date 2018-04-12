@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git-multi-user]]></title>
+    <url>%2F2018%2F04%2F12%2Fgit-multi-user%2F</url>
+    <content type="text"><![CDATA[recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it If you never use git, maybe you should just google how to use it. It’s a very powerful tool.Since I have used it, so my .ssh folder has id_rsa and id_rsa.pub file. That is the ssh key between my pc’s git and github.In order to manage two github account. The first thing I have to is create two different ssh keys. 123456789101112$ cd .ssh&amp;&amp;ls .sshid_rsa.pub id_rsa ssh_auth_sock$ mv id_rsa.pub id_rsa_A.pub //first ssh key $ mv id_rsa id_rsa_A$ ssh-keygen -t rsa -C "your email" //you should specify ssh key name under the command's output information$ ls .ssh //the final resultid_rsa_A.pub id_rsa_A ssh_auth_sockid_rsa_B.pub id_rsa_B Then add ssh key to ssh agen12$ ssh-add ~/.ssh/id_rsa_A$ ssh-add ~/.ssh/id_rsa_B The next step is copy two ssh key(id_rsa_A and id_rsa_b content) to github account. Then edit config file(if non-exist, create it) under .ssh folder. add following content. The most important is Host and IdentityFile. 1234567891011121314151617181920# configuration 1 # Host github.com Host A.com # HostName 服务器ip地址或机器名 HostName github.com # User连接服务器的用户名 User A # IdentityFile 密匙文件的具体路径 IdentityFile ~/.ssh/id_rsa_A # configuration 2 # Host 服务器别名 Host B.com # HostName 服务器ip地址或机器名 HostName github.com # User连接服务器的用户名 User B # IdentityFile 密匙文件的具体路径 IdentityFile ~/.ssh/id_rsa_B Ok, test them!1234$ ssh -T git@A.comHi ***! You've successfully authenticated, but GitHub does not provide shell access.$ ssh -T git@B.comHi ***! You've successfully authenticated, but GitHub does not provide shell access. No problem! NOTE! when you copy such as git@github.com:A/A.github.io.git. you should change it to git@A.com:A/A.github.io.git . then git remote add to you dictionary. Then push is ok.]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F04%2F12%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>

@@ -331,6 +331,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/git-multi-user/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="msfkl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msfkl">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/12/git-multi-user/" itemprop="url">
+                  git-multi-user
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T20:18:41+08:00">2018-04-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it</em>  </p>
+<p>If you never use git, maybe you should just google how to use it. It’s a very powerful tool.<br>Since I have used it, so my .ssh folder has <code>id_rsa</code> and <code>id_rsa.pub</code> file. That is the ssh key between my pc’s git and github.<br>In order to manage two github account. The first thing I have to is create two different ssh keys.  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> .ssh&amp;&amp;ls .ssh</span></span><br><span class="line">id_rsa.pub  id_rsa  ssh_auth_sock</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> mv id_rsa.pub id_rsa_A.pub  			//first ssh key </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mv id_rsa id_rsa_A</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -C <span class="string">"your email"</span>		//you should specify ssh key name </span></span><br><span class="line">under the command's output information</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ls .ssh							//the final result</span></span><br><span class="line">id_rsa_A.pub  id_rsa_A  ssh_auth_sock</span><br><span class="line">id_rsa_B.pub id_rsa_B</span><br></pre></td></tr></table></figure>
+<p>Then add ssh key to <code>ssh agen</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-add ~/.ssh/id_rsa_A</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-add ~/.ssh/id_rsa_B</span></span><br></pre></td></tr></table></figure></p>
+<p>The next step is copy two ssh key(id_rsa_A and id_rsa_b content) to github account.  </p>
+<p><img src="/2018/04/12/git-multi-user/github_ssh_key.png" alt="">  </p>
+<p>Then edit <code>config</code> file(if non-exist, create it) under .ssh folder. add following content. The most important is Host and IdentityFile.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># configuration 1  </span><br><span class="line"># Host github.com      </span><br><span class="line">Host A.com  </span><br><span class="line"># HostName 服务器ip地址或机器名  </span><br><span class="line">HostName github.com  </span><br><span class="line"># User连接服务器的用户名  </span><br><span class="line">User A  </span><br><span class="line"># IdentityFile 密匙文件的具体路径  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_A</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"># configuration 2 </span><br><span class="line"># Host 服务器别名  </span><br><span class="line">Host B.com  </span><br><span class="line"># HostName 服务器ip地址或机器名  </span><br><span class="line">HostName github.com  </span><br><span class="line"># User连接服务器的用户名  </span><br><span class="line">User B  </span><br><span class="line"># IdentityFile 密匙文件的具体路径  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_B</span><br></pre></td></tr></table></figure>
+<p>Ok, test them!<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@A.com</span></span><br><span class="line">Hi ***! You've successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@B.com</span></span><br><span class="line">Hi ***! You've successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p>
+<p>No problem!  </p>
+<p>NOTE! when you copy such as <code>git@github.com:A/A.github.io.git</code>. you should change it to <code>git@A.com:A/A.github.io.git</code> . then <code>git remote add</code> to you dictionary. Then <code>push</code> is ok. </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -518,7 +679,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -533,7 +694,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -548,7 +711,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
