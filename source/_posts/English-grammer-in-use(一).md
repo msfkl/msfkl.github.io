@@ -2,10 +2,10 @@
 title: English grammer in use(一)
 date: 2018-04-20 20:09:35
 tags: 
-  - English Grammar
+  - english grammar
   - present continuous
 categories:
-  - English
+  - english
 
 ---
 
