@@ -99,20 +99,18 @@
 
 
 
-  <meta name="description" content="recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it   If you never use git, maybe you should just google how to use it. It’s a very p">
-<meta name="keywords" content="git">
+  <meta name="description" content="some words to be rememered : discrete Fourier transform 离散傅立叶变换 What are algorithms? an algorithms is any well-defined computational procedure that takes some value, or set of values, as input and pro">
+<meta name="keywords" content="algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git-multi-user">
-<meta property="og:url" content="http://yoursite.com/2018/04/12/git-multi-user/index.html">
+<meta property="og:title" content="introduction to algorithms(一)">
+<meta property="og:url" content="http://yoursite.com/2018/04/21/introduction-to-algorithms-一/index.html">
 <meta property="og:site_name" content="msfkl">
-<meta property="og:description" content="recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it   If you never use git, maybe you should just google how to use it. It’s a very p">
+<meta property="og:description" content="some words to be rememered : discrete Fourier transform 离散傅立叶变换 What are algorithms? an algorithms is any well-defined computational procedure that takes some value, or set of values, as input and pro">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/04/12/git-multi-user/git-multi-user.png">
-<meta property="og:updated_time" content="2018-04-12T14:00:16.267Z">
+<meta property="og:updated_time" content="2018-04-21T15:20:34.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git-multi-user">
-<meta name="twitter:description" content="recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it   If you never use git, maybe you should just google how to use it. It’s a very p">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/12/git-multi-user/git-multi-user.png">
+<meta name="twitter:title" content="introduction to algorithms(一)">
+<meta name="twitter:description" content="some words to be rememered : discrete Fourier transform 离散傅立叶变换 What are algorithms? an algorithms is any well-defined computational procedure that takes some value, or set of values, as input and pro">
 
 
 
@@ -121,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/12/git-multi-user/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/21/introduction-to-algorithms-一/"/>
 
 
 
@@ -131,7 +129,7 @@
   };
 </script>
 
-  <title>git-multi-user | msfkl</title>
+  <title>introduction to algorithms(一) | msfkl</title>
   
 
 
@@ -334,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/git-multi-user/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/introduction-to-algorithms-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="msfkl">
@@ -351,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git-multi-user
+          <h1 class="post-title" itemprop="name headline">introduction to algorithms(一)
               
             
           </h1>
@@ -370,7 +368,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T20:18:41+08:00">2018-04-12</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T16:50:31+08:00">2018-04-21</time>
             
 
             
@@ -391,7 +389,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithms/" itemprop="url" rel="index"><span itemprop="name">algorithms</span></a></span>
 
                 
                 
@@ -425,17 +423,44 @@
       
 
       
-        <p><em>recently, I want to use my pc’s git to manage two github account. so after search a lot, I find a way to accomplish it</em>  </p>
-<p>If you never use git, maybe you should just google how to use it. It’s a very powerful tool.<br>Since I have used it, so my .ssh folder has <code>id_rsa</code> and <code>id_rsa.pub</code> file. That is the ssh key between my pc’s git and github.<br>In order to manage two github account. The first thing I have to is create two different ssh keys.  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd .ssh&amp;&amp;ls .ssh</span><br><span class="line">id_rsa.pub  id_rsa  ssh_auth_sock</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> mv id_rsa.pub id_rsa_A.pub  			//first ssh key </span><br><span class="line"><span class="meta">$</span> mv id_rsa id_rsa_A</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -C "your email"		//you should specify ssh key name </span><br><span class="line">under the command's output information</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> ls .ssh							//the final result</span><br><span class="line">id_rsa_A.pub  id_rsa_A  ssh_auth_sock</span><br><span class="line">id_rsa_B.pub id_rsa_B</span><br></pre></td></tr></table></figure>
-<p>Then add ssh key to <code>ssh agen</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-add ~/.ssh/id_rsa_A</span><br><span class="line"><span class="meta">$</span> ssh-add ~/.ssh/id_rsa_B</span><br></pre></td></tr></table></figure></p>
-<p>The next step is copy two ssh key(id_rsa_A and id_rsa_b content) to github account.  </p>
-<p><img src="/2018/04/12/git-multi-user/git-multi-user.png" alt="">  </p>
-<p>Then edit <code>config</code> file(if non-exist, create it) under .ssh folder. add following content. The most important is Host and IdentityFile.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># configuration 1  </span><br><span class="line"># Host github.com      </span><br><span class="line">Host A.com  </span><br><span class="line"># HostName 服务器ip地址或机器名  </span><br><span class="line">HostName github.com  </span><br><span class="line"># User连接服务器的用户名  </span><br><span class="line">User A  </span><br><span class="line"># IdentityFile 密匙文件的具体路径  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_A</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"># configuration 2 </span><br><span class="line"># Host 服务器别名  </span><br><span class="line">Host B.com  </span><br><span class="line"># HostName 服务器ip地址或机器名  </span><br><span class="line">HostName github.com  </span><br><span class="line"># User连接服务器的用户名  </span><br><span class="line">User B  </span><br><span class="line"># IdentityFile 密匙文件的具体路径  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_B</span><br></pre></td></tr></table></figure>
-<p>Ok, test them!<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh -T git@A.com</span><br><span class="line">Hi ***! You've successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"><span class="meta">$</span> ssh -T git@B.com</span><br><span class="line">Hi ***! You've successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p>
-<p>No problem!  </p>
-<p>NOTE! when you copy such as <code>git@github.com:A/A.github.io.git</code>. you should change it to <code>git@A.com:A/A.github.io.git</code> . then <code>git remote add</code> to you dictionary. Then <code>push</code> is ok. </p>
+        <p><strong>some words to be rememered : discrete Fourier transform 离散傅立叶变换</strong></p>
+<h3 id="What-are-algorithms"><a href="#What-are-algorithms" class="headerlink" title="What are algorithms?"></a>What are algorithms?</h3><ul>
+<li><p>an algorithms is any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.   </p>
+</li>
+<li><p>an algorithms is a sequence of computational steps that transform the input into the output.  </p>
+</li>
+</ul>
+<h3 id="instance"><a href="#instance" class="headerlink" title="instance"></a>instance</h3><p>an input data is called an instance of problem.  In general, an instance of a problem consist of the input(satisfying whatever constraints are imposed in the problem statement) needed to compute a solution to the problem.  </p>
+<h3 id="which-sorting-algorithm-to-use-probably-depends-on"><a href="#which-sorting-algorithm-to-use-probably-depends-on" class="headerlink" title="which sorting algorithm to use probably depends on"></a>which sorting algorithm to use probably depends on</h3><ol>
+<li>the number of items to be sorted.</li>
+<li>the extent to which the items are already somewhat sorted, </li>
+<li>possible restrictions on the item values. </li>
+<li>the architecture of the computer.</li>
+<li>the kind of storage devices to be used.</li>
+<li>main memory disks …</li>
+</ol>
+<h3 id="correct-algorithm"><a href="#correct-algorithm" class="headerlink" title="correct algorithm"></a>correct algorithm</h3><p><strong>for every input instance, it halts with the correct output.</strong><br>However, incorrect algorithms can sometimes be useful if we can control their error rate.   </p>
+<h3 id="two-characteristics-that-are-common-to-many-interesting-algorithms-problems"><a href="#two-characteristics-that-are-common-to-many-interesting-algorithms-problems" class="headerlink" title="two characteristics that are common to many interesting algorithms problems"></a>two characteristics that are common to many interesting algorithms problems</h3><ol>
+<li>They have many candicate solutions, the overwhelming majority of which do not solve the problem at hand. Finding one that does, or one that is “best” can present quite a challenge.</li>
+<li>They have practical applications</li>
+</ol>
+<h3 id="data-structures"><a href="#data-structures" class="headerlink" title="data structures"></a>data structures</h3><p><strong>A data structure is a way to store and organize data in order to facilitate access and modifications.</strong>  No single data structure works well for all purposes, and so it is important to know the strengths and limitations of several of them. </p>
+<h3 id="efficiency"><a href="#efficiency" class="headerlink" title="efficiency"></a>efficiency</h3><p>Our usual measure of efficiency is speed. That is : how long an algorithms takes to produce its result?   </p>
+<ul>
+<li>interesting NP-complete: <ol>
+<li>problems for which no efficient solutions is known. nobody knows whether or not efficient algorithms exist for NP-complete problems. </li>
+<li><strong>remarkable property</strong> : if an efficient algorithm exists for any one of them, then efficient algorithms exist for all of them. </li>
+<li>several NP-complete problems are similar, but not identical, to problems for which we do know of efficient algorithms. </li>
+<li>if you can show that the problem is NP-complete , you can instead spend your time developing an efficient algorithm that gives a good, but not the best possible, solution. </li>
+</ol>
+</li>
+</ul>
+<h3 id="Parallelism"><a href="#Parallelism" class="headerlink" title="Parallelism"></a>Parallelism</h3><p>In order to elicit the best performance from multicore computers, we need to design algorithms with parallelism in mind.  multithreaded algorithms which take advantage of multiple cores. </p>
+<h3 id="comparison-between-insertion-sort-and-merge-sort"><a href="#comparison-between-insertion-sort-and-merge-sort" class="headerlink" title="comparison between insertion sort and merge sort"></a>comparison between insertion sort and merge sort</h3><ol>
+<li>insertion sort takes time roughly equal to <strong>c1的n次方</strong>, merge sort takest time roughly equal to <strong>c2nlogn</strong> ,<code>c1&lt;c2</code> and constant factors can have far less of an impact on the running time than the dependence on the input size n. </li>
+<li>although insertion sort usually runs faster than merge sort for small input sizes, once the input size n becomes large enough, merge sort’s advantage of lgn compensate for difference in constant factors.</li>
+</ol>
+<h3 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h3><p>Having a solid base of algorithmic knowledge and technique is one characteristic that separates the truly skilled programmers from the novices. With modern computing technology, you can accomplish some tasks without knowing much about algorithms, but with a good backgrond in algorithms, you can do much, much more…</p>
 
       
     </div>
@@ -456,7 +481,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/algorithms/" rel="tag"># algorithms</a>
           
         </div>
       
@@ -469,15 +494,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/21/English-grammer-in-use-三/" rel="next" title="English grammer in use(三)">
+                <i class="fa fa-chevron-left"></i> English grammer in use(三)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/20/English-grammer-in-use(一)/" rel="prev" title="English grammer in use(一)">
-                English grammer in use(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -638,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-are-algorithms"><span class="nav-number">1.</span> <span class="nav-text">What are algorithms?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instance"><span class="nav-number">2.</span> <span class="nav-text">instance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which-sorting-algorithm-to-use-probably-depends-on"><span class="nav-number">3.</span> <span class="nav-text">which sorting algorithm to use probably depends on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#correct-algorithm"><span class="nav-number">4.</span> <span class="nav-text">correct algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-characteristics-that-are-common-to-many-interesting-algorithms-problems"><span class="nav-number">5.</span> <span class="nav-text">two characteristics that are common to many interesting algorithms problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-structures"><span class="nav-number">6.</span> <span class="nav-text">data structures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#efficiency"><span class="nav-number">7.</span> <span class="nav-text">efficiency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallelism"><span class="nav-number">8.</span> <span class="nav-text">Parallelism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#comparison-between-insertion-sort-and-merge-sort"><span class="nav-number">9.</span> <span class="nav-text">comparison between insertion sort and merge sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">10.</span> <span class="nav-text">conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
