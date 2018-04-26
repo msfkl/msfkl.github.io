@@ -6,7 +6,7 @@ categories: algorithms
 
 ---
 
-**some words to be rememered : discrete Fourier transform 离散傅立叶变换**
+**some words to be remembered : discrete Fourier transform 离散傅立叶变换**
 ### What are algorithms?
 
 - an algorithms is any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.   
